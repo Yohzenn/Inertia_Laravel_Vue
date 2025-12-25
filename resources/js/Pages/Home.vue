@@ -6,6 +6,6 @@
 
 <template>
     <Head :title="`${$page.component}`" />
-        <h1>{{ $page.props.user }}</h1>
-        <Link class="mt-[1400px] block" preserve-scroll> Refresh </Link>
+        <h1>Home page</h1>
+       
 </template>
