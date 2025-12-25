@@ -5,6 +5,12 @@
 </script>
 
 <template>
+
+    <!-- <Head>
+        <meta head-key="description" name="description">
+    </Head> -->
+
+    <Head title="About" />
     <div>
         <h1>
             About Page {{ user }}
