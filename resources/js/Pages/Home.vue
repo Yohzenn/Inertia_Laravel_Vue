@@ -5,6 +5,7 @@
 </script>
 
 <template>
-    <Head title="Home" />
+    <Head :title="`${$page.component}`" />
+        <h1>{{ $page.props.user }}</h1>
         <Link class="mt-[1400px] block" preserve-scroll> Refresh </Link>
 </template>
