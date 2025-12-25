@@ -6,5 +6,5 @@
 
 <template>
     <Head title="Home" />
-        <h1 class="text-3xl font-bold underline">Hello</h1>
+        <Link class="mt-[1400px] block" preserve-scroll> Refresh </Link>
 </template>
