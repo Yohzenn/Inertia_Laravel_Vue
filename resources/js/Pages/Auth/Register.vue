@@ -16,8 +16,15 @@ import Textinput from '../../Components/Textinput.vue';
         name: null,
         email: null,
         password: null,
-        password_confirmation: null
+        password_confirmation: null,
+        avatar:null,
+        preview: null
     })
+
+    const change = (e) => {
+        form.avatar = e.target.files[0];
+        form.preview = URL.createObjectURL(e.target.files[0]);
+    }
 
     const submit = () => {
         // router.post('/register', form)
@@ -37,6 +44,26 @@ import Textinput from '../../Components/Textinput.vue';
         <!-- Pas besoin d'action avec le form car il se gère avec inertiajs 
         Le CRSF Token se fait automatiquement avec inertia-->
         <form @submit.prevent="submit">
+            <!-- Upload Avatar -->
+      <div class="grid place-items-center">
+        <div
+          class="relative w-28 h-28 rounded-full overflow-hidden border border-slate-300"
+        >
+          <label for="avatar" class="absolute inset-0 grid content-end cursor-pointer">
+            <span class="bg-white/70 pb-2 text-center">Avatar</span>
+          </label>
+          <input type="file" @input="change" id="avatar" hidden />
+
+          <img
+            class="object-cover w-28 h-28"
+            :src="form.preview ?? 'storage/avatars/default.jpeg'"
+          />
+        </div>
+
+        <p class="error mt-2">{{ form.errors.avatar }}</p>
+      </div>
+      <!-- End Upload Avatar -->
+
             <Textinput name="name" v-model="form.name" :message="form.errors.name"/>
              
             <Textinput name="email" type="email" v-model="form.email" :message="form.errors.email"/>
@@ -67,8 +94,8 @@ import Textinput from '../../Components/Textinput.vue';
             </div> -->
             <div>
                 <p class="text-slate-600 mb-2"> Already a user? <a :href="route('login')" class="text-link">Login</a></p>
-                <button class="primary-btn" :disabled="form.processing">Login</button>
+                <button class="primary-btn" :disabled="form.processing">Register</button>
             </div>
         </form>
     </div>
-</template>
+</template> 

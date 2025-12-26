@@ -12,7 +12,9 @@
                 <div class="space-x-6">
                     <Link class="nav-link" :href="route('home')" :class="{'bg-slate-700' : $page.component === 'Home'}">Home</Link>
                 </div>
-                <div v-if="$page.props.auth.user">
+                <div v-if="$page.props.auth.user" class="flex space-x-6 items-center">
+                    <img  class="avatar" :src="$page.props.auth.user.avatar?
+                        ('storage/' + $page.props.auth.user.avatar) : ('storage/avatars/default.jpeg')" alt="">
                     <Link :class="{'bg-slate-700' : $page.component === 'Dashboard'}" class="nav-link" :href="route('dashboard')">Dashboard</Link>
                     <Link class="nav-link" method="post" as="button" :href="route('logout')">Logout</Link>
                 </div>
