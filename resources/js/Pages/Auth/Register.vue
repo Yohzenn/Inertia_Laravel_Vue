@@ -9,6 +9,7 @@ import { reactive } from 'vue';
 // import { router} from '@inertiajs/vue3';
  import {useForm} from '@inertiajs/vue3';
 import { route } from '../../../../vendor/tightenco/ziggy/src/js';
+import Textinput from '../../Components/Textinput.vue';
 
 
     // const form = reactive({
@@ -37,7 +38,14 @@ import { route } from '../../../../vendor/tightenco/ziggy/src/js';
         <!-- Pas besoin d'action avec le form car il se gère avec inertiajs 
         Le CRSF Token se fait automatiquement avec inertia-->
         <form @submit.prevent="submit">
-            <div class="mb-6">
+            <Textinput name="name" v-model="form.name" :message="form.errors.name"/>
+             
+            <Textinput name="email" type="email" v-model="form.email" :message="form.errors.email"/>
+
+            <Textinput name="password" type="password" v-model="form.password" :message="form.errors.password"/>
+
+            <Textinput name="password_confirmation" v-model="form.password_confirmation" />
+            <!-- <div class="mb-6">
                 <label for="name">Name</label>
                 <input type="text" v-model="form.name">
                 <small> {{ form.errors.name }}</small>
@@ -57,7 +65,7 @@ import { route } from '../../../../vendor/tightenco/ziggy/src/js';
             <div class="mb-6">
                 <label for="name">Confirm Password</label>
                 <input type="password" v-model="form.password_confirmation">
-            </div>
+            </div> -->
             <div>
                 <p class="text-slate-600 mb-2"> Already a user? <a href="#" class="text-link">Login</a></p>
                 <button class="primary-btn" :disabled="form.processing">Register</button>
