@@ -13,17 +13,16 @@ import Textinput from '../../Components/Textinput.vue';
 
     // const form = reactive({
     const form = useForm({
-        name: null,
         email: null,
         password: null,
-        password_confirmation: null
+        remember: null
     })
 
     const submit = () => {
         // router.post('/register', form)
-        form.post(route('register'),
+        form.post(route('login'),
             {
-                onError:() => form.reset('password', password_confirmation),
+                onError:() => form.reset('password'),
                 preserveScroll: true
             }
         )
@@ -31,19 +30,17 @@ import Textinput from '../../Components/Textinput.vue';
 </script>
 <template>
     <Head :title="`${$page.component}`"/>
-    <h1 class="title">Register a new account </h1>
+    <h1 class="title"> Login to your account </h1>
 
     <div class="w-2/4 mx-auto">
         <!-- Pas besoin d'action avec le form car il se gère avec inertiajs 
         Le CRSF Token se fait automatiquement avec inertia-->
         <form @submit.prevent="submit">
-            <Textinput name="name" v-model="form.name" :message="form.errors.name"/>
              
             <Textinput name="email" type="email" v-model="form.email" :message="form.errors.email"/>
 
             <Textinput name="password" type="password" v-model="form.password" :message="form.errors.password"/>
 
-            <Textinput name="password_confirmation" v-model="form.password_confirmation" />
             <!-- <div class="mb-6">
                 <label for="name">Name</label>
                 <input type="text" v-model="form.name">
@@ -65,9 +62,16 @@ import Textinput from '../../Components/Textinput.vue';
                 <label for="name">Confirm Password</label>
                 <input type="password" v-model="form.password_confirmation">
             </div> -->
+            <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" v-model="form.remember" id="remember">
+                    <label for="remember">Remember Me</label>
+                </div>
+                <p class="text-slate-600">Need an account?<a :href="route('register')" class="text-link"> Register</a>
+                </p>
+            </div>
+            <button class="primary-btn" :disabled="form.processing">Login</button>
             <div>
-                <p class="text-slate-600 mb-2"> Already a user? <a :href="route('login')" class="text-link">Login</a></p>
-                <button class="primary-btn" :disabled="form.processing">Login</button>
             </div>
         </form>
     </div>
