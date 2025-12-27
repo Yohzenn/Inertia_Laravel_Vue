@@ -70,7 +70,7 @@ import Textinput from '../../Components/Textinput.vue';
 
             <Textinput name="password" type="password" v-model="form.password" :message="form.errors.password"/>
 
-            <Textinput name="password_confirmation" v-model="form.password_confirmation" />
+            <Textinput name="confirm password" type="password" v-model="form.password_confirmation" />
             <!-- <div class="mb-6">
                 <label for="name">Name</label>
                 <input type="text" v-model="form.name">
